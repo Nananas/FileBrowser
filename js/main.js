@@ -110,7 +110,7 @@ var Main = function() {
 		}
 	});
 	this.app = express_Express();
-	this.app["use"]("/filebrowser",express_Express["static"]("filebrowser",null));
+	if(this.cfg.env == "development") this.app["use"]("/filebrowser",express_Express["static"]("filebrowser",null));
 	this.app.get("/",function(req,res) {
 		res.send(_g.template_compiled);
 	});

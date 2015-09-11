@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>::title::</title>
+	</head>
+	<link rel="stylesheet" href="./css/fontello.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<body>
+		<div class="wrapper">
+			<h1>::title::</h1>
+			<table>
+				<caption>Files:</caption>
+				::foreach files::
+				<tr>
+					<td>
+						::if (type==0)::
+						<div class="icon-doc-text icon"></div>
+						::elseif (type==1)::
+						<div class="icon-file-archive icon"></div>
+						::elseif (type==2)::
+						<div class="icon-file-image icon"></div>
+						::elseif (type==3)::
+						<div class="icon-file-pdf icon"></div>
+						::elseif (type==4)::
+						<div class="icon-file-audio icon"></div>
+						::elseif (type==5)::
+						<div class="icon-file-word icon"></div>
+						::elseif (type==6)::
+						<div class="icon-file-powerpoint icon"></div>
+						::elseif (type==7)::
+						<div class="icon-file-excel icon"></div>
+						::end::
+						<a href="::path::">::name::</a>
+					</td>
+				</tr>
+				::end::
+			</table>
+		</div>
+	</body>
+</html>
