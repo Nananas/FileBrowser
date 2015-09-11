@@ -96,6 +96,11 @@ var Main = function() {
 	this.cfg = require('./config').Config;;
 	var _g = this;
 	this.path = this.cfg.watchPath;
+	this.servePath = this.cfg.servePath;
+	console.log("------------------------");
+	console.log("Watch path: " + this.path);
+	console.log("Serve path: " + this.servePath);
+	console.log("------------------------");
 	this.template_string = js_node_Fs.readFileSync(this.template_path,{ encoding : "UTF-8"});
 	this.runParser();
 	js_node_Fs.watch(this.path,function(event,filename) {
