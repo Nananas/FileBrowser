@@ -125,7 +125,7 @@ Main.prototype = {
 			while(_g < f.length) {
 				var i = f[_g];
 				++_g;
-				var node = new FileNode(i,_g1.path + "/" + i);
+				var node = new FileNode(i,_g1.servePath + "/" + i);
 				directory.addFile(node);
 			}
 			_g1.template = new haxe_Template(_g1.template_string);

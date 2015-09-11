@@ -1,9 +1,11 @@
 var development = {
-	watchPath: "./test"
+	watchPath: "./test",
+	servePath: "."
 };
 
 var production = {
-	watchPath: "../html/public"
+	watchPath: "../html/public",
+	servePath: "./public/"
 };
 
 exports.Config = global.process.env.NODE_ENV === 'production' ? production : development;
