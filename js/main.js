@@ -93,8 +93,9 @@ var Main = function() {
 	this.title = "Public Directory Browser";
 	this.template_path = "./html/T_Viewer_blocks.html";
 	this.servedPage = "";
-	this.path = "./test";
+	this.cfg = require('./config').Config;;
 	var _g = this;
+	this.path = this.cfg.watchPath;
 	this.template_string = js_node_Fs.readFileSync(this.template_path,{ encoding : "UTF-8"});
 	this.runParser();
 	js_node_Fs.watch(this.path,function(event,filename) {

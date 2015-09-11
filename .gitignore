@@ -1,0 +1,6 @@
+src/
+test/
+build.hxml
+*.sublime-project
+*.sublime-workspace
+node_modules/
