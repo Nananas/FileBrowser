@@ -1,0 +1,21 @@
+
+-lib hxnodejs
+-lib express
+-cp src
+-main Main
+-js js/main.js
+
+--next
+-lib hxnodejs
+-lib express
+-cp src
+-main Client
+-js filebrowser/js/client.js
+
+--next
+-lib hxnodejs
+-lib express
+-cp src
+-main LocalEventServer
+-js test/localEventServer.js
+
