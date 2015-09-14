@@ -1,4 +1,7 @@
 
-- [o] dont serve folders as files
+- [o] don't serve folders as files
 	- [ ] serve child folders as public browsers. Navigation.
 
+- [ ] check for existing spaces in a filename, so we don't break the name in a unnatural way.
+
+- [o] make the port number a config setting

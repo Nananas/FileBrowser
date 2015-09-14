@@ -97,10 +97,6 @@ var Main = function() {
 	var _g = this;
 	this.path = this.cfg.watchPath;
 	this.servePath = this.cfg.servePath;
-	console.log("------------------------");
-	console.log("Watch path: " + this.path);
-	console.log("Serve path: " + this.servePath);
-	console.log("------------------------");
 	this.template_string = js_node_Fs.readFileSync(this.template_path,{ encoding : "UTF-8"});
 	this.runParser();
 	js_node_Fs.watch(this.path,function(event,filename) {
@@ -110,11 +106,19 @@ var Main = function() {
 		}
 	});
 	this.app = express_Express();
+	var port;
+	if(this.cfg.port != null) port = this.cfg.port; else port = 2999;
 	if(this.cfg.env == "development") this.app["use"]("/filebrowser",express_Express["static"]("filebrowser",null));
 	this.app.get("/",function(req,res) {
 		res.send(_g.template_compiled);
 	});
-	this.app.listen(2999);
+	this.app.listen(port);
+	console.log("------------------------");
+	console.log(" Watch path: " + this.path);
+	console.log(" Serve path: " + this.servePath);
+	console.log("------------------------");
+	console.log(" Port: " + port);
+	console.log("------------------------");
 };
 Main.__name__ = true;
 Main.main = function() {
@@ -130,9 +134,12 @@ Main.prototype = {
 			while(_g < f.length) {
 				var i = f[_g];
 				++_g;
-				var size = js_node_Fs.statSync(_g1.path + "/" + i).size;
-				var node = new FileNode(i,_g1.servePath + "/" + i,size);
-				directory.addFile(node);
+				var stats = js_node_Fs.statSync(_g1.path + "/" + i);
+				if(!stats.isDirectory()) {
+					var size = stats.size;
+					var node = new FileNode(i,_g1.servePath + "/" + i,size);
+					directory.addFile(node);
+				}
 			}
 			_g1.template = new haxe_Template(_g1.template_string);
 			_g1.template_compiled = _g1.template.execute(directory);

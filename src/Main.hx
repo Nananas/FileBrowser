@@ -31,10 +31,6 @@ class Main
 		path = cfg.watchPath;
 		servePath = cfg.servePath;
 
-		trace("------------------------");
-		trace("Watch path: "+path);
-		trace("Serve path: "+servePath);
-		trace("------------------------");
 
 		template_string = Fs.readFileSync(template_path, {encoding:"UTF-8"});
 
@@ -50,6 +46,8 @@ class Main
 
 		app = new Express();
 
+		var port = cfg.port != null ? cfg.port : 2999;
+
 		// serve static files directly with nginx
 		if (cfg.env == "development")
 		{
@@ -60,7 +58,15 @@ class Main
 			res.send(template_compiled);
 		});
 
-		app.listen(2999);
+
+		app.listen(port);
+
+		trace("------------------------");
+		trace(" Watch path: "+path);
+		trace(" Serve path: "+servePath);
+		trace("------------------------");
+		trace(" Port: "+port);
+		trace("------------------------");
 	}
 
 
