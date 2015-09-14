@@ -130,7 +130,8 @@ Main.prototype = {
 			while(_g < f.length) {
 				var i = f[_g];
 				++_g;
-				var node = new FileNode(i,_g1.servePath + "/" + i);
+				var size = js_node_Fs.statSync(_g1.path + "/" + i).size;
+				var node = new FileNode(i,_g1.servePath + "/" + i,size);
 				directory.addFile(node);
 			}
 			_g1.template = new haxe_Template(_g1.template_string);
@@ -151,7 +152,7 @@ DirectoryNode.prototype = {
 	}
 	,__class__: DirectoryNode
 };
-var FileNode = function(name,path) {
+var FileNode = function(name,path,size) {
 	this._filename_size = 20;
 	var newname = "";
 	var rest = name;
@@ -164,6 +165,7 @@ var FileNode = function(name,path) {
 	newname += rest;
 	this.name = newname;
 	this.path = path;
+	if(size < 1000) this.size = size + " B"; else if(size < 1000000) this.size = Math.round(size / 1000) + " KB"; else this.size = Math.round(size / 100000) + " MB";
 	var end_list = name.split(".");
 	var end = end_list[end_list.length - 1];
 	var _g = end.toLowerCase();

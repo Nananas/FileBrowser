@@ -6,31 +6,32 @@
 	<link rel="stylesheet" href="./filebrowser/css/fontello.css">
 	<link rel="stylesheet" href="./filebrowser/css/style.css">
 	<!-- <script type="text/javascript" src="./filebrowser/js/client.js"></script> -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-45215610-2', 'auto');
+		ga('send', 'pageview');
+	</script>
 	<body>
 		<div class="wrapper container">
 			<h1>::title::</h1>
 			<div class="wrapper">
 				::foreach files::
 				<div class="block">
-					::if (type==0)::
-					<a class="icon-doc-text icon" href="::path::"><p>::name::</p></a>
-					::elseif (type==1)::
-					<a class="icon-file-archive icon" href="::path::"><p>::name::</p></a>
-					::elseif (type==2)::
-					<a class="icon-file-image icon" href="::path::"><p>::name::</p></a>
-					::elseif (type==3)::
-					<a class="icon-file-pdf icon" href="::path::"><p>::name::</p></a>
-					::elseif (type==4)::
-					<a class="icon-file-audio icon" href="::path::"><p>::name::</p></a>
-					::elseif (type==5)::
-					<a class="icon-file-word icon" href="::path::"><p>::name::</p></a>
-					::elseif (type==6)::
-					<a class="icon-file-powerpoint icon" href="::path::"><p>::name::</p></a>
-					::elseif (type==7)::
-					<a class="icon-file-excel icon" href="::path::"><p>::name::</p></a>
-					::end::
-					<!--  <a href="::path::" class="link">::name::</a> -->
-					<!-- 22 characters maximum -->
+					<a ::if (type==0):: class="icon-doc-text icon"
+					::elseif (type==1):: class="icon-file-archive icon"
+					::elseif (type==2):: class="icon-file-image icon"
+					::elseif (type==3):: class="icon-file-pdf icon"
+					::elseif (type==4):: class="icon-file-audio icon"
+					::elseif (type==5):: class="icon-file-word icon"
+					::elseif (type==6):: class="icon-file-powerpoint icon"
+					::elseif (type==7):: class="icon-file-excel icon" ::end::
+					href="::path::"><p>::name::</p>
+					<div class="stats">::size::</div>
+					</a>
 				</div>
 				::end::
 			</div>

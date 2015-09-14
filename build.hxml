@@ -12,10 +12,10 @@
 -main Client
 -js filebrowser/js/client.js
 
---next
--lib hxnodejs
--lib express
--cp src
--main LocalEventServer
--js test/localEventServer.js
+# --next
+# -lib hxnodejs
+# -lib express
+# -cp src
+# -main LocalEventServer
+# -js test/localEventServer.js
 

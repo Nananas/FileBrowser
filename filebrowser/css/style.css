@@ -114,7 +114,7 @@ body{
 }
 
 
-.icon > p {
+.icon > p, .stats {
 	display:block;
 	position:absolute;
 	width:180px;
@@ -129,6 +129,18 @@ body{
 	font-family: monospace;
 	text-align: center;
 	line-height: 1em;
+}
+
+.stats {
+	display:none;
+	position:absolute;
+	top:0;
+	padding-top:10px;
+}
+
+
+a:hover > .stats{
+	display:block;
 }
 
 

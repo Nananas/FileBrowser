@@ -70,8 +70,12 @@ class Main
 
 		Fs.readdir(path, function(err, f) {
 			for (i in f) {
-				var node:FileNode = new FileNode(i, servePath + "/" + i);
-				directory.addFile(node);
+				var stats:js.node.fs.Stats = Fs.statSync(path + "/" + i);
+				if (!stats.isDirectory()) {
+					var size = stats.size;
+					var node:FileNode = new FileNode(i, servePath + "/" + i, size);
+					directory.addFile(node);
+				}
 			}
 
 			template = new Template(template_string);
@@ -109,10 +113,11 @@ class FileNode {
 	public var name:String;
 	public var path:String;
 	public var type:Int;
+	public var size:String;
 
 	var _filename_size:Int = 20;
 
-	public function new (name, path) {
+	public function new (name, path, size) {
 
 		var newname = "";
 		var rest:String = name;
@@ -130,6 +135,13 @@ class FileNode {
 
 		this.name = newname;
 		this.path = path;
+		if (size < 1000)
+			this.size = size + " B";
+		else if (size < 1000000)
+			this.size = Math.round(size/1000) + " KB";
+		else
+			this.size = Math.round(size/100000) + " MB";
+
 
 		var end_list:Array<String> = name.split(".");
 		var end = end_list[end_list.length - 1];
